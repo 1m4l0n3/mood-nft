@@ -29,9 +29,20 @@ contract MoodNftTest is Test {
         assert(keccak256(abi.encodePacked(expectedValue)) == keccak256(abi.encodePacked(actualValue)));
     }
 
-    function testViewTokenURI() public {
+    function testViewTokenURI() external {
         vm.prank(alice);
         moodNft.mintNft();
         console.log(moodNft.tokenURI(0));
+    }
+
+    function testFlipMood() external {
+        vm.prank(alice);
+        uint256 tokenId = moodNft.mintNft();
+        uint256 moodBeforeFlip = moodNft.getMoodOfNft(tokenId);
+
+        vm.prank(alice);
+        moodNft.flipMood(tokenId);
+        uint256 moodAfterFlip = moodNft.getMoodOfNft(tokenId);
+        assert(moodBeforeFlip != moodAfterFlip);
     }
 }
