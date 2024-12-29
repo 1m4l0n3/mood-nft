@@ -10,7 +10,9 @@ contract MoodNftDeploy is Script {
     string private s_happySvgURI;
     string private s_sadSvgURI;
 
-    constructor(string memory happySvgPath, string memory sadSvgPath) {
+    constructor() {
+        string memory happySvgPath = "./img/happy.svg";
+        string memory sadSvgPath = "./img/sad.svg";
         s_happySvgURI = svgToImageURI(vm.readFile(happySvgPath));
         s_sadSvgURI = svgToImageURI(vm.readFile(sadSvgPath));
     }
