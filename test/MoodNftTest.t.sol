@@ -7,16 +7,12 @@ import {MoodNftDeploy} from "../script/MoodNftDeploy.s.sol";
 import {MoodNft} from "../src/MoodNft.sol";
 
 contract MoodNftTest is Test {
-    string private happySvgPath;
-    string private sadSvgPath;
     MoodNftDeploy private deployer;
     MoodNft private moodNft;
     address private alice;
 
     function setUp() public {
-        happySvgPath = "./img/happy.svg";
-        sadSvgPath = "./img/sad.svg";
-        deployer = new MoodNftDeploy(happySvgPath,sadSvgPath);
+        deployer = new MoodNftDeploy();
         moodNft =  deployer.run();
 
         alice = makeAddr("Alice");
